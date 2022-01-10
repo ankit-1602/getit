@@ -1,17 +1,19 @@
 import Header from "./components/Header";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
+import {BrowserRouter as Router} from 'react-router-dom'
 import { Container } from 'react-bootstrap';
+import HomeScreen from './screen/HomeScreen';
 function App() {
   return (
-    <>
+    <Router>
       <Header />
       <main>
         <Container>
-          <h1>Welcome to GetIt</h1>
+          <Route exact path="/" component={HomeScreen} />
         </Container>
       </main>
       <Footer/>
-    </>
+    </Router>
   );
 }
 
