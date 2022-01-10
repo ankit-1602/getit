@@ -1,0 +1,17 @@
+{
+  "name": "getit",
+  "version": "1.0.0",
+  "description": "An E-Commerce App build with MERN.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "author": "Ankit Roy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
