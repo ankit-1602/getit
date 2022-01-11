@@ -12,9 +12,7 @@ app.get('/',(req,res)=>{
 app.get('/api/products',(req,res)=>{
     res.status(200).json({
         status:'success',
-        data:{
-            products
-        }
+        products
     })
 })
 
@@ -22,9 +20,7 @@ app.get('/api/products/:id',(req,res)=>{
     const product=products.find(prod => prod._id===req.params.id)
     res.status(200).json({
         status:'success',
-        data:{
-            product
-        }
+        product
     })
 })
 

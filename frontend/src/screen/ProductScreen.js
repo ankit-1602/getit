@@ -1,11 +1,21 @@
-import React,{useState} from 'react'
-import products from './../products'
-import {Link} from 'react-router-dom'
-import {Row,Col,Image,Card,ListGroup,Button, Form} from 'react-bootstrap'
-import Rating from '../components/Rating'
+import React,{useState,useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import {Row,Col,Image,Card,ListGroup,Button, Form} from 'react-bootstrap';
+import Rating from '../components/Rating';
+import axios from 'axios';
+
 const ProductScreen = ({match}) => {
     const [qty,setQty]=useState(0)
-    const product=products.find(x => x._id===match.params.id)
+    const [product,setProduct]=useState({})
+
+    const fetchProduct = async ()=>{
+        const {data}=await axios.get(`/api/products/${match.params.id}`)
+        setProduct(data.product)
+    }
+
+    useEffect(()=>{
+        fetchProduct();
+    },[])
 
     const addToCartHandler=()=>{
         console.log('Add to cart handler.')
