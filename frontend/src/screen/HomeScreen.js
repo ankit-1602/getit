@@ -8,7 +8,8 @@ const HomeScreen = () => {
     
     const fetchProducts=async ()=>{
         const {data}=await axios.get('/api/products')
-        setProducts(data.products)
+        setProducts(data)
+        console.log(data)
     }
     useEffect(()=>{
         fetchProducts()
