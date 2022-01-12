@@ -1,15 +1,17 @@
 import express from 'express';
-import dotenv from 'dotenv'
-import products from './data/products.js'
-import connectDB from './config/db.js'
-import productRoutes from './routes/productRoutes.js'
-
-import {errorHandler,notFound} from './middleware/errorMiddleware.js'
+import dotenv from 'dotenv';
+import products from './data/products.js';
+import connectDB from './config/db.js';
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import {errorHandler,notFound} from './middleware/errorMiddleware.js';
 dotenv.config();
 connectDB();
 
 const app =express();
 
+//Body Parser
+app.use(express.json());
 
 app.get('/',(req,res)=>{
     res.status(200).json({
@@ -18,7 +20,9 @@ app.get('/',(req,res)=>{
     })
 })
 
+//Routes
 app.use('/api/products',productRoutes);
+app.use('/api/users',userRoutes);
 
 //Error handling middleware's
 app.use(notFound);
