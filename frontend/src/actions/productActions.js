@@ -3,6 +3,7 @@ import {
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL
 } from './../constants/productConstants';
+import axios from 'axios';
 
 export const listProducts = () => async (dispatch) => {
     try {
@@ -14,8 +15,8 @@ export const listProducts = () => async (dispatch) => {
         })
     } catch (error) {
         dispatch({
-            PRODUCT_LIST_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message;
+            type:PRODUCT_LIST_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }
 }
