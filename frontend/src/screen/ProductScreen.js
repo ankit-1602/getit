@@ -8,19 +8,19 @@ import Loader from './../components/Loader';
 import Message from './../components/Message';
 
 const ProductScreen = ({match,history}) => {
-    const [qty,setQty]=useState(0)
-    const dispatch=useDispatch()
+    const [qty,setQty]=useState(1);
+    const dispatch=useDispatch();
 
-    const productDetails=useSelector(state=>state.productDetails)
-    const {loading,error,product}=productDetails
+    const productDetails=useSelector(state=>state.productDetails);
+    const {loading,error,product}=productDetails;
 
     useEffect(()=>{
         dispatch(listProductDetails(match.params.id));
     },[match,dispatch])
 
     const addToCartHandler=()=>{
-        history.push(`/cart/${match.params.id}?qty=${qty}`)
-        console.log('Add to cart handler.')
+        history.push(`/cart/${match.params.id}?qty=${qty}`);
+        console.log('Add to cart handler.');
     }
     return (
         <>
