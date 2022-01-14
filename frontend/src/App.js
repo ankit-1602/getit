@@ -10,12 +10,15 @@ import RegisterScreen from "./screen/RegisterScreen";
 import ProfileScreen from "./screen/ProfileScreen";
 import ShippingScreen from "./screen/ShippingScreen";
 import PaymentScreen from "./screen/PaymentScreen";
+import PlaceOrderScreen from './screen/PlaceOrderScreen';
+
 function App() {
   return (
     <Router>
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/placeorder" component={PlaceOrderScreen}/>
           <Route path="/payment" component={PaymentScreen}/>
           <Route path="/shipping" component={ShippingScreen}/>
           <Route path="/profile" component={ProfileScreen} />
