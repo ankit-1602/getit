@@ -15,8 +15,8 @@ import {
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_RESET,
     USER_LIST_REQUEST,
-    USER_LIST_RESET,
     USER_LIST_SUCCESS,
+    USER_LIST_RESET,
     USER_LIST_FAIL
 } from './../constants/userConstants';
 
