@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {
-  listProducts
+  listProducts,
+  deleteProduct
 } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
@@ -20,10 +21,19 @@ const ProductListScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const productDelete = useSelector((state) => state.productDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete
+
   useEffect(() => {
     //dispatch({ type: PRODUCT_CREATE_RESET })
-
-    if (!userInfo || !userInfo.isAdmin) {
+    
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(listProducts())
+    }else{
       history.push('/login')
     }
 
@@ -35,7 +45,10 @@ const ProductListScreen = ({ history, match }) => {
   ])
 
   const deleteHandler = (id) => {
-
+    if (window.confirm('Are you sure')) {
+      dispatch(deleteProduct(id))
+      dispatch(listProducts())
+    }
   }
 
   const createProductHandler = () => {
@@ -54,6 +67,8 @@ const ProductListScreen = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
