@@ -3,7 +3,8 @@ import {
     getProducts,
     getProductById,
     deleteProduct,
-    createProduct
+    createProduct,
+    updateProduct
 } from './../controllers/productController.js';
 
 import express from 'express';
@@ -18,5 +19,5 @@ router
     .route('/:id')
     .get(getProductById)
     .delete(protect,admin,deleteProduct)
-
+    .put(protect,admin,updateProduct)
 export default router
