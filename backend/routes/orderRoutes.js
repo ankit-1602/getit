@@ -2,7 +2,8 @@ import express from 'express'
 const router = express.Router()
 import {
   addOrderItems,
-  getOrderById
+  getOrderById,
+  updateOrderToPaid
 } from '../controllers/orderController.js'
 import { protect } from './../middleware/authMiddleware.js'
 
