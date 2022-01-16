@@ -19,3 +19,7 @@ main{
   .rating span{
     margin: 0.1rem;
   }
+
+  .visually-hidden{
+    display: none;
+  }
