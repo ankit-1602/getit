@@ -4,12 +4,14 @@ import {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
-  getMyOrders
+  getMyOrders,
+  getOrders
 } from '../controllers/orderController.js'
-import { protect } from './../middleware/authMiddleware.js'
+import { protect,admin } from './../middleware/authMiddleware.js'
 
 router
     .route('/')
+    .get(protect,admin,getOrders)
     .post(protect, addOrderItems)
     
 router
