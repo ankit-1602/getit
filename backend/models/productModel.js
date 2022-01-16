@@ -4,7 +4,12 @@ const Schema=mongoose.Schema
 const reviewSchema=Schema({
     name:{type:String,require:true},
     rating:{type:Number,require:true},
-    comment:{type:String,require:true}
+    comment:{type:String,require:true},
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
 },{
     timestamps: true
 })
