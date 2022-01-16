@@ -5,12 +5,15 @@ import Product from './../components/Product';
 import Message from './../components/Message';
 import Loader from './../components/Loader';
 import { listProducts } from './../actions/productActions';
-const HomeScreen = () => {
+const HomeScreen = ({match}) => {
+    const keyword = match.params.keyword
+    const pageNumber = match.params.pageNumber || 1
+
     const dispatch = useDispatch()
     
-    useEffect(()=>{
-        dispatch(listProducts())
-    },[dispatch])
+    useEffect(() => {
+        dispatch(listProducts(keyword))
+      }, [dispatch, keyword])
     
     const productList=useSelector(state=>state.productList)
     const {loading,products,error}=productList
