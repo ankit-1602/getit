@@ -17,7 +17,7 @@ const ProductCarousel = () => {
   }, [dispatch])
 
   return loading ? (
-    <Loader />
+    <h1>...</h1>
   ) : error ? (
     <Message variant='danger'>{error}</Message>
   ) : (
