@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import products from './data/products.js';
@@ -20,12 +21,6 @@ if(process.env.NODE_ENV==='development'){
 //Body Parser
 app.use(express.json());
 
-app.get('/',(req,res)=>{
-    res.status(200).json({
-        status:'success',
-        message:'This is the home page.'
-    })
-})
 
 //Routes
 app.use('/api/products',productRoutes);
@@ -36,6 +31,19 @@ app.use('/api/upload',uploadRoutes)
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 )
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static(path.join(__dirname,'/frontend/build')));
+
+    app.get('*',(req,res)=> res.sendFile(path.resolve(__dirname,'frontend','build','index.html')));
+}else{
+    app.get('/',(req,res)=>{
+        res.send('API is running...')
+    })
+}
 
 //Error handling middleware's
 app.use(notFound);
